@@ -1,0 +1,112 @@
+@layer at-rules.base {
+  @property --pulse-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  .section {
+    margin-top: 3rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: 1.5rem;
+    background: #040714;
+    color: #f5f6ff;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    animation: rotate-hue 14s linear infinite;
+  }
+
+  .heading {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+  }
+
+  .description {
+    margin: 0 0 1.5rem;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .card {
+    border-radius: 1rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.2),
+        transparent 55%
+      ),
+      linear-gradient(
+        var(--pulse-angle),
+        rgba(62, 130, 255, 0.75),
+        rgba(143, 255, 223, 0.65)
+      );
+    backdrop-filter: blur(6px);
+    transition: transform 200ms ease;
+    container-type: inline-size;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card h3 {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+  }
+
+  .card p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.72);
+    font-size: 0.95rem;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    border-radius: 50%;
+    background: conic-gradient(
+      from var(--pulse-angle),
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.65)
+    );
+    mix-blend-mode: screen;
+    opacity: 0.55;
+    animation: sheen 10s linear infinite;
+    pointer-events: none;
+  }
+
+  @container (max-width: 260px) {
+    .card p {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@layer at-rules.effects {
+  @keyframes rotate-hue {
+    from {
+      --pulse-angle: 0deg;
+    }
+    to {
+      --pulse-angle: 360deg;
+    }
+  }
+
+  @keyframes sheen {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

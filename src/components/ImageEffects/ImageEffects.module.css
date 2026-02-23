@@ -1,0 +1,96 @@
+.section {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(3, 7, 18, 0.92), rgba(3, 12, 35, 0.85));
+  color: #f8fbff;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.heading {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.description {
+  margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  position: relative;
+  border-radius: 1.25rem;
+  min-height: 220px;
+  overflow: hidden;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+}
+
+.cardContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardContent span {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.card figcaption {
+  position: relative;
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.maskCard {
+  background:
+    linear-gradient(140deg, #ffb347, #ff416c),
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.8), transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.6), transparent 50%);
+  mask-image: radial-gradient(circle at 30% 40%, rgba(0, 0, 0, 0.7), transparent 75%);
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+}
+
+.transformCard {
+  background: linear-gradient(135deg, #5efce8, #736efe);
+  transform: perspective(800px) rotateY(-12deg) rotateX(6deg);
+  transform-style: preserve-3d;
+}
+
+.transformCard::before {
+  content: '';
+  position: absolute;
+  inset: 15% 20%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), transparent 60%);
+  filter: blur(25px) saturate(140%);
+  transform: translateZ(30px);
+  pointer-events: none;
+}
+
+.transformCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.35), transparent 65%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
